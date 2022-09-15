@@ -12,6 +12,8 @@
 
 - As a **Site User** I can **register an account** so that **I can contribute to the site**.
 
+- As a **Site User** I can **Log in and out of my account** so that **I can keep my contributions secure**.
+
 - As a **Site User / Admin** I can **view and edit my profile** so that **I can change my username / email address and upload / change my profile picture**.
 
 - As a **Site Admin** I can **create, read, update and delete posts** so that **I can manage my contributions to the site**.
@@ -25,4 +27,6 @@
 - As a **Site User / Admin** I can **create draft posts** so that **I can finish writing the content later**.
 
 - As a **Site Admin** I can **get an email notification of new posts and/or comments** so that **I can filter out objectionable content**.
+
+- As a **Site User / Admin** I can **reset my account password if I've lost or forgotten it** so that **I can continue to use my account**.
 
