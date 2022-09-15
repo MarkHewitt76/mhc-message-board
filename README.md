@@ -2,9 +2,9 @@
 
 ## User Stories
 
-- As a **Site User** I can **view a paginated list of posts** so that **I can select one to interact with**.
+- As a **Site User** I can **view a list of posts** so that **I can select one to interact with**.
 
-- As a **Site User** I can **click on a post** so that **interact with it**.
+- As a **Site User** I can **click on a post** so that **I can interact with it**.
 
 - As a **Site User / Admin** I can **view the number of likes on each post** so that **I can see which is the most popular or viral**.
 
@@ -25,6 +25,10 @@
 - As a **Site User / Admin** I can **like or unlike a post** so that **I can interact with the content**.
 
 - As a **Site User / Admin** I can **create draft posts** so that **I can finish writing the content later**.
+
+- As a **Site User / Admin** I can **view paginated lists of posts** so that **I can navigate the site more easily**.
+
+- As a **Site User / Admin** I can **view posts by category** so that **I can find posts more easily**.
 
 - As a **Site Admin** I can **get an email notification of new posts and/or comments** so that **I can filter out objectionable content**.
 
