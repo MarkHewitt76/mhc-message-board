@@ -19,14 +19,16 @@
                                     <img src="{{ post.post_image.url }}" alt="" class="card-img-top">
                                     {% endif %}
                                     <div class="image-flash">
-                                        <p class="author">Author: {{ post.author }}</p>
+                                        <h4 class="author">Author: 
+                                            <a href="" class="post-link">{{ post.author }}</a>
+                                        </h4>
                                     </div>
-                                    <h3 class="card-title muted">Category: 
+                                    <h5 class="card-title text-muted">Category: 
                                         <a href="#" class="post-link">{{ post.get_category_display }}</a>
-                                    </h3>
+                                    </h5>
                                     <a href="#" class="post-link">
                                         <h2 class="card-title">{{ post.title }}</h2>
-                                        <p class="card-text">{{ post.content }}</p>
+                                        <p class="card-text">{{ post.content | safe }}</p>
                                     </a>
 
                                 </div>
