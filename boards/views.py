@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Post
-from.forms import UserRegistrationForm
+from .forms import UserRegistrationForm
 
 
 class PostList(generic.ListView):
@@ -28,7 +27,7 @@ class FullPost(View):
 
     def get(self, request, slug, *args, **kwargs):
         """
-        Method to get post object 
+        Method to get post object.
         """
 
         queryset = Post.objects.filter(status=1)
@@ -67,3 +66,11 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
+
+
+def profile(request):
+    """
+    Function for user profile view.
+    """
+
+    return render(request, 'profile.html')
