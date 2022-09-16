@@ -21,6 +21,9 @@
                                     <div class="image-flash">
                                         <p class="author">Author: {{ post.author }}</p>
                                     </div>
+                                    <h3 class="card-title muted">Category: 
+                                        <a href="#" class="post-link">{{ post.get_category_display }}</a>
+                                    </h3>
                                     <a href="#" class="post-link">
                                         <h2 class="card-title">{{ post.title }}</h2>
                                         <p class="card-text">{{ post.content }}</p>
