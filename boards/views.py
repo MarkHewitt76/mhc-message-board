@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import UserRegistrationForm
 
@@ -68,6 +69,7 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
+@login_required
 def profile(request):
     """
     Function for user profile view.
