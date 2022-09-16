@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Post
+from.forms import UserRegistrationForm
 
 
 class PostList(generic.ListView):
@@ -54,13 +55,15 @@ def register(request):
     """
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            form.save()
             username = form.cleaned_data.get('username')
             messages.success(
-                request, f'Your account has been created! You are now able to log in'
+                request,
+                f"Your account has been created! You are now able to log in"
             )
             return redirect('boards_home')
     else:
-        form = UserCreationForm()
+        form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
