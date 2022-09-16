@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from .models import Post
-# from django.http import HttpResponse
 
 
 class PostList(generic.ListView):
@@ -46,9 +47,20 @@ class FullPost(View):
             },
         )
 
-# def home(request):
-#     return HttpResponse('<h1>Homepage</h1>')
 
+def register(request):
+    """
+    Function view for user registration form
+    """
 
-# def about(request):
-#     return HttpResponse('<h1>About page</h1>')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            messages.success(
+                request, f'Your account has been created! You are now able to log in'
+            )
+            return redirect('boards_home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
