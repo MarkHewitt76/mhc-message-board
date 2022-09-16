@@ -63,7 +63,7 @@ def register(request):
                 request,
                 f"Your account has been created! You are now able to log in"
             )
-            return redirect('boards_home')
+            return redirect('login')
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
