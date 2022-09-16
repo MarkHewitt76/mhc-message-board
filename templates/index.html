@@ -33,7 +33,7 @@
                         {% else %}
                         <img class="img-fluid" src=" {{ post.post_image.url }}">
                         {% endif %}
-                        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                        <h2><a class="article-title" href="{% url 'boards-post' post.slug %}">{{ post.title }}</a></h2>
                         <div class="preview-content overflow-hidden">
                             {{ post.content | safe }}
                         </div>
