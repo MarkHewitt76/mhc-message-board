@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views import generic
+from django.shortcuts import render, get_object_or_404
+from django.views import generic, View
 from .models import Post
 # from django.http import HttpResponse
 
@@ -14,6 +14,37 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
+
+
+class FullPost(View):
+    """
+    View for a single post, selected by the user, displaying
+    comments and likes. The url for each individual post is derived
+    from the Post model's slug field which is, in turn,
+    populated by the title.
+    """
+
+    def get(self, request, slug, *args, **kwargs):
+        """
+        Method to get post object 
+        """
+
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comments = post.comments.order_by('created_on')
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        return render(
+            request,
+            "full_post.html",
+            {
+                "post": post,
+                "comments": comments,
+                "liked": liked
+            },
+        )
 
 # def home(request):
 #     return HttpResponse('<h1>Homepage</h1>')
