@@ -6,7 +6,7 @@
 
     <div class="row d-flex justify-content-around">
 
-        <article class="col-md-6 mt-3 media full-post-content">
+        <article class="col-8 mt-3 media full-post-content">
             {% if 'pic_placeholder' in post.author.user_profile.profile_image.url %}
             <img class="rounded-circle profile-img-thumb" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Profile picture">
             {% else %}
@@ -20,9 +20,6 @@
                         <a href="#">{{ post.get_category_display }}</a>
                     </small></p>
                 </div>
-                <!-- <div class="user-img-thumb">
-                    <img src="{{ user.user_profile.profile_image.url }}" alt="">
-                </div> -->
                 {% if "placeholder" in post.post_image.url %}
                 <img class="img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Placeholder image">
                 {% else %}
@@ -43,6 +40,12 @@
                         {% endwith %}
                     </div>
                 </div>
+                {% if post.author == user %}
+                <div>
+                    <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'update_post' post.slug %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_post' post.slug %}">Delete</a>
+                </div>
+                {% endif %}
             </div>
         </article>
         
@@ -55,12 +58,8 @@
             <div class="card-body">
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
+                    <p class=" text-muted font-weight-normal">{{ comment.created_on }}</p>
+                    <p class="font-weight-bold">{{ comment.name }} wrote:</p>
                     {{ comment.body | linebreaks }}
                 </div>
                 <hr/>
