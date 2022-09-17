@@ -17,7 +17,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-dark navbar-expand-sm bg-dark bg-gradient sticky-top">
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark bg-gradient sticky-top">
         <a href="{% url 'boards_home' %}" class="navbar-brand">
             <p class="h5 ml-2">Malin Head Community</p>
             <p class="h5 ml-2">Message Board</p>
@@ -37,22 +37,25 @@
                         Categories
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                        {% for post in post_list %}
-                            {% for category in post.CATEGORIES %}
-                            <a class="dropdown-item" href="#">{{ category.1 }}</a>
-                            {% endfor %}
-                        {% endfor %}
+                        <a class="dropdown-item" href="#">Community Alerts</a>
+                        <a class="dropdown-item" href="#">Local News</a>
+                        <a class="dropdown-item" href="#">Opinions</a>
+                        <a class="dropdown-item" href="#">Marketplace</a>
                     </div>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item mr-2">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                <li class="nav-item ml-1">
+                    <a class="nav-link" href="{% url 'create_post' %}">New Message</a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item ml-1">
+                    <a class="nav-link" href="{% url 'profile' %}">Edit Profile</a>
                 </li>
                 <li class="nav-item mr-2">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% else %}
-                <li class="nav-item mr-2">
+                <li class="nav-item ml-5">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item mr-2">
