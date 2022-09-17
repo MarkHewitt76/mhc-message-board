@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Post
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 
 
 class PostList(generic.ListView):
@@ -75,4 +75,12 @@ def profile(request):
     Function for user profile view.
     """
 
-    return render(request, 'profile.html')
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.user_profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'profile.html', context)

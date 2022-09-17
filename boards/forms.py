@@ -40,4 +40,4 @@ class ProfileUpdateForm(forms.ModelForm):
     """
     class Meta:
         model = UserProfile
-        fields = ['image']
+        fields = ['profile_image']
