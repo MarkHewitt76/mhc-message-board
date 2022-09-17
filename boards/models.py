@@ -64,3 +64,18 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.name} commented: {self.body}"
+
+
+class UserProfile(models.Model):
+    """
+    Model for user profile. Extends standard User model,
+    adding a profile image field.
+    """
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='user_profile'
+    )
+    profile_image = CloudinaryField('image', default='pic_placeholder')
+
+    def __str__(self):
+        return f'User Profile: {self.user.username}'

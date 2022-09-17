@@ -65,12 +65,37 @@ a.article-title:hover {
     text-decoration: none;
 }
 
-/* Forms */
+/* Forms & profiles */
 
-.form-content {
+.form-content, .profile-content {
     background: #ffffff;
     padding: 10px 20px;
     border: 1px solid #dddddd;
     border-radius: 3px;
     margin-bottom: 20px;
+}
+
+.profile-img-thumb {
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.profile-img-med {
+    height: 75px;
+    width: 75px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.profile-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+.profile-heading {
+    font-size: 2.5rem;
 }

@@ -7,6 +7,11 @@
     <div class="row d-flex justify-content-around">
 
         <article class="col-md-6 mt-3 media full-post-content">
+            {% if "pic_placeholder" in user.user_profile.profile_image.url %}
+            <img class="rounded-circle profile-img-med" src="https://asset.cloudinary.com/markhewitt76/c1ad8ca7b6567a75684439f66c0b2dd5">
+            {% else %}
+            <img class="rounded-circle profile-img-med" src="{{ user.user_profile.profile_image.url }}">
+            {% endif %}
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2 lead font-weight-bolder" href="#">{{ post.author }}</a>
@@ -15,11 +20,11 @@
                         <a href="#">{{ post.get_category_display }}</a>
                     </small></p>
                 </div>
-                <div class="user-img-thumb">
-                    <img src="" alt="">
-                </div>
-                {% if "placeholder" in post.featured_image.url %}
-                <img class="img-fluid" src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                <!-- <div class="user-img-thumb">
+                    <img src="{{ user.user_profile.profile_image.url }}" alt="">
+                </div> -->
+                {% if "placeholder" in post.post_image.url %}
+                <img class="img-fluid" src="https://asset.cloudinary.com/markhewitt76/c1ad8ca7b6567a75684439f66c0b2dd5">
                 {% else %}
                 <img class="img-fluid" src=" {{ post.post_image.url }}">
                 {% endif %}
