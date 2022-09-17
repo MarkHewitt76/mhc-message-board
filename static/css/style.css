@@ -65,6 +65,13 @@ a.article-title:hover {
     text-decoration: none;
 }
 
+/* Pagination buttons */
+
+.pag-btn {
+    padding: 3px 10px;
+    font-size: 14px;
+}
+
 /* Forms & profiles */
 
 .form-content, .profile-content {
