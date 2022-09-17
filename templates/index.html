@@ -17,11 +17,7 @@
                 {% for post in post_list %}
 
                 <article class="col-md-4 media post-content">
-                    {% if "pic_placeholder" in user.user_profile.profile_image.url %}
-                    <img class="rounded-circle profile-img-thumb" src="https://asset.cloudinary.com/markhewitt76/c1ad8ca7b6567a75684439f66c0b2dd5">
-                    {% else %}
-                    <img class="rounded-circle profile-img-thumb" src="{{ post.author.user_profile.profile_image.url }}">
-                    {% endif %}
+                    <img class="rounded-circle profile-img-thumb" src="{{ post.author.user_profile.profile_image.url }}" alt="Profile picture">
                     <div class="media-body">
                         <div class="article-metadata">
                             <a class="mr-2 lead font-weight-bolder" href="#">{{ post.author }}</a>
@@ -34,9 +30,9 @@
                             <img src="{{ user.user_profile.profile_image.url }}" alt="">
                         </div> -->
                         {% if "placeholder" in post.post_image.url %}
-                        <img class="img-fluid" src="">
+                        <img class="img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Placeholder image">
                         {% else %}
-                        <img class="img-fluid" src=" {{ post.post_image.url }}">
+                        <img class="img-fluid" src=" {{ post.post_image.url }}" alt="Article image">
                         {% endif %}
                         <h2><a class="article-title" href="{% url 'boards_post' post.slug %}">{{ post.title }}</a></h2>
                         <div class="preview-content overflow-hidden">

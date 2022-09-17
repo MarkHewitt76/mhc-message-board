@@ -6,8 +6,12 @@
 <div class="container-fluid my5 col-sm-8 col-md-6 col-xl-4">
     <div class="profile-content">
         <div class="media">
-          <img class="rounded-circle profile-img" src="{{ user.user_profile.profile_image.url }}">
-          <div class="media-body">
+            {% if 'pic_placeholder' in user.user_profile.profile_image.url %}
+            <img class="rounded-circle profile-img" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Placeholder image">
+            {% else %}
+            <img class="rounded-circle profile-img" src="{{ user.user_profile.profile_image.url }}" alt="Profile picture">
+            {% endif %}
+            <div class="media-body">
             <h2 class="profile-heading">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
           </div>
