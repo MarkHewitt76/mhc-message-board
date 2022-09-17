@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import (
     UserRegistrationForm,
@@ -54,7 +55,7 @@ class FullPost(View):
         )
     
 
-class CreatePost(generic.CreateView):
+class CreatePost(LoginRequiredMixin, generic.CreateView):
     """
     View for all post creation form, using the Post model
     and inheriting from generic create view model.
