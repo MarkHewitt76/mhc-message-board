@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from .forms import (
     UserRegistrationForm,
@@ -53,11 +53,11 @@ class FullPost(View):
                 "liked": liked
             },
         )
-    
+
 
 class CreatePost(LoginRequiredMixin, generic.CreateView):
     """
-    View for all post creation form, using the Post model
+    View for post creation form, using the Post model
     and inheriting from generic create view model.
     """
 
@@ -76,6 +76,63 @@ class CreatePost(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 
+class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    """
+    View for post update form, using the Post model and
+    inheriting from generic update view model, as well as
+    LogInRequiredMixin and UserPassesTestMixin for security
+    and validation.
+    """
+
+    model = Post
+    fields = ['title', 'category', 'content', 'post_image']
+
+    def form_valid(self, form):
+        """
+        Method to override UpdateView form_valid method in order
+        to set author and slug fields of Post model.
+        """
+
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        form.instance.status = 1
+        return super().form_valid(form)
+
+    def test_func(self):
+        """
+        Inherited from UserPassesTestMixin. Will use get_object
+        method of UpdateView to test current user for
+        authorship of current post.
+        """
+
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+    
+
+class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    """
+    View for post deletion, using the Post model and
+    inheriting from generic delete view model, as well as
+    LogInRequiredMixin and UserPassesTestMixin for security
+    and validation.
+    """
+
+    model = Post
+    
+    def test_func(self):
+        """
+        Inherited from UserPassesTestMixin. Will use get_object
+        method of UpdateView to test current user for
+        authorship of current post.
+        """
+
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
 def register(request):
     """
     Function view for user registration form
@@ -88,7 +145,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             messages.success(
                 request,
-                f"Your account has been created! You are now able to log in."
+                f"Welcome {username}! Your account has been created."
             )
             return redirect('login')
     else:
@@ -111,7 +168,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(
-                request, f'Your account has been updated successfully!'
+                request, "Your account has been updated successfully!"
             )
             return redirect('profile')
 
