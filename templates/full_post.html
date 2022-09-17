@@ -10,7 +10,7 @@
             {% if "pic_placeholder" in user.user_profile.profile_image.url %}
             <img class="rounded-circle profile-img-med" src="https://asset.cloudinary.com/markhewitt76/c1ad8ca7b6567a75684439f66c0b2dd5">
             {% else %}
-            <img class="rounded-circle profile-img-med" src="{{ user.user_profile.profile_image.url }}">
+            <img class="rounded-circle profile-img-med" src="{{ post.author.user_profile.profile_image.url }}">
             {% endif %}
             <div class="media-body">
                 <div class="article-metadata">
@@ -24,7 +24,7 @@
                     <img src="{{ user.user_profile.profile_image.url }}" alt="">
                 </div> -->
                 {% if "placeholder" in post.post_image.url %}
-                <img class="img-fluid" src="https://asset.cloudinary.com/markhewitt76/c1ad8ca7b6567a75684439f66c0b2dd5">
+                <img class="img-fluid" src="">
                 {% else %}
                 <img class="img-fluid" src=" {{ post.post_image.url }}">
                 {% endif %}
