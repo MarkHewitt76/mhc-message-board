@@ -29,5 +29,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(
         template_name='logout.html'
         ), name='logout'),
+    path('new/', views.CreatePost.as_view(template_name='post_form.html'), name='create_post'),
     path('', include('boards.urls'), name='boards_urls'),
 ]

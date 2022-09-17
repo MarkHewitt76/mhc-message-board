@@ -2,8 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from .models import Post
-from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import (
+    UserRegistrationForm,
+    UserUpdateForm,
+    ProfileUpdateForm
+)
 
 
 class PostList(generic.ListView):
@@ -47,6 +52,27 @@ class FullPost(View):
                 "liked": liked
             },
         )
+    
+
+class CreatePost(generic.CreateView):
+    """
+    View for all post creation form, using the Post model
+    and inheriting from generic create view model.
+    """
+
+    model = Post
+    fields = ['title', 'category', 'content', 'post_image']
+
+    def form_valid(self, form):
+        """
+        Method to override CreateView form_valid method in order
+        to set author and slug fields of Post model.
+        """
+
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        form.instance.status = 1
+        return super().form_valid(form)
 
 
 def register(request):
