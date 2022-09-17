@@ -109,7 +109,7 @@ class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         if self.request.user == post.author:
             return True
         return False
-    
+
 
 class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
@@ -120,7 +120,8 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
 
     model = Post
-    
+    success_url = '/'
+
     def test_func(self):
         """
         Inherited from UserPassesTestMixin. Will use get_object
