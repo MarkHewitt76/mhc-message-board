@@ -15,6 +15,7 @@ urlpatterns = [
         name='category_posts'
     ),
     path('post/<slug:slug>/', views.FullPost.as_view(), name='boards_post'),
+    path('like/<slug:slug>/', views.PostLike.as_view(), name='post_like'),
     path('register/', views.register, name='register'),
     path('user/profile/', views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(

@@ -1,5 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import (
+    render,
+    get_object_or_404,
+    redirect,
+    reverse
+)
 from django.views import generic, View
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
@@ -138,6 +144,26 @@ class FullPost(View):
         #         "comment_form": comment_form
         #     },
         # )
+
+
+class PostLike(View):
+    """
+    View for liking and unliking posts.
+    """
+
+    def post(self, request, slug):
+        """
+        Method to toggle liked/unliked state on a particular post.
+        """
+
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id=self.request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('boards_post', args=[slug]))
 
 
 class CreatePost(LoginRequiredMixin, generic.CreateView):

@@ -33,7 +33,26 @@
                 <hr />
                 <div class="row">
                     <div class="col-1">
+                        {% if user.is_authenticated %}
+                        <strong>
+                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <span>{{ post.number_of_likes }}</span>
+                                {% else %}
+                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}">
+                                    <i class="far fa-thumbs-up"></i>
+                                </button>
+                                <span>{{ post.number_of_likes }}</span>
+                                {% endif %}
+                            </form>
+                        </strong>
+                        {% else %}
                         <strong class="text-secondary"><i class="far fa-thumbs-up"></i> {{ post.number_of_likes }}</strong>
+                        {% endif %}
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
