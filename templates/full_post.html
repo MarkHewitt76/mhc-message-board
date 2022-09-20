@@ -14,7 +14,7 @@
             {% endif %}
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2 lead font-weight-bolder" href="#">{{ post.author }}</a>
+                    <a class="mr-2 lead font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
                     <small class="text-muted">{{ post.created_on }}</small>
                     <p><small class="text-muted">Category:
                         <a href="#">{{ post.get_category_display }}</a>
