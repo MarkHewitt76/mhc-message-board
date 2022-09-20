@@ -9,6 +9,11 @@ urlpatterns = [
         views.UserPostList.as_view(),
         name='user_posts'
     ),
+    path(
+        'posts/category/<str:category>/',
+        views.CategoryList.as_view(),
+        name='category_posts'
+    ),
     path('post/<slug:slug>/', views.FullPost.as_view(), name='boards_post'),
     path('register/', views.register, name='register'),
     path('user/profile/', views.profile, name='profile'),

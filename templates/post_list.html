@@ -15,7 +15,7 @@
                         <a class="mr-2 lead font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
                         <p><small class="text-muted">{{ post.created_on }}</small></p>
                         <p><small class="text-muted">Category:
-                            <a href="#">{{ post.category }}</a>
+                            <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
                         </small></p>
                     </div>
                     {% if "placeholder" in post.post_image.url %}

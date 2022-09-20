@@ -38,7 +38,7 @@
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
                         {% for category in categories %}
-                            <a class="dropdown-item" href="#">{{ category }}</a>
+                            <a class="dropdown-item" href="{% url 'category_posts' category.name %}">{{ category }}</a>
                         {% endfor %}
                         <!-- <a class="dropdown-item" href="#">Community Alerts</a>
                         <a class="dropdown-item" href="#">Local News</a>

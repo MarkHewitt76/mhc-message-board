@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Category, Post
 from .forms import (
     UserRegistrationForm,
     UserUpdateForm,
@@ -47,6 +47,30 @@ class UserPostList(generic.ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(
             status=1, author=user
+            ).order_by('-created_on')
+
+
+class CategoryList(generic.ListView):
+    """
+    View for all published posts in a specific category, in
+    descending order, using Post model and inheriting
+    from generic list view model.
+    """
+
+    model = Post
+    template_name = 'category_posts.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        """
+        Method to return posts restricted to 'published' status AND to
+        the category whose name is the parameter in the url specified
+        by the corresponding path in url patterns.
+        """
+
+        category = get_object_or_404(Category, name=self.kwargs.get('category'))
+        return Post.objects.filter(
+            status=1, category=category
             ).order_by('-created_on')
 
 
