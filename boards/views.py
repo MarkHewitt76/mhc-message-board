@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import Post
 from .forms import (
     UserRegistrationForm,
@@ -23,6 +24,30 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 6
+
+
+class UserPostList(generic.ListView):
+    """
+    View for all published posts by a specific user, in
+    descending order, using Post model and inheriting
+    from generic list view model.
+    """
+
+    model = Post
+    template_name = 'user_posts.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        """
+        Method to return posts restricted to 'published' status AND to
+        authorship by the user whose username is the parameter in the
+        url specified by the corresponding path in url patterns.
+        """
+
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(
+            status=1, author=user
+            ).order_by('-created_on')
 
 
 class FullPost(View):
