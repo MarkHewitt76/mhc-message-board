@@ -65,6 +65,10 @@ a.article-title:hover {
     text-decoration: none;
 }
 
+.comment-form legend {
+    font-size: 20px;
+}
+
 /* Pagination buttons */
 
 .pag-btn {

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -6,7 +7,7 @@
 
     <div class="row d-flex justify-content-around">
 
-        <article class="col-8 mt-3 media full-post-content">
+        <article class="col-8 mt-3 mb-0 media full-post-content">
             {% if 'pic_placeholder' in post.author.user_profile.profile_image.url %}
             <img class="rounded-circle profile-img-thumb" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Profile picture">
             {% else %}
@@ -51,7 +52,24 @@
         
     </div>
 
-    
+    {% if user.is_authenticated %}
+    <div class="row d-flex justify-content-center comment-form">
+        <div class="col-sm-8 col-md-6 col-lg-4 card border-0 mb-0 mt-0">
+            <h4>Add a comment</h4>
+            <form method="POST" class="mt1">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-1">Posting as: {{ user.username }}</legend>
+                    {{ comment_form | crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-dark" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="row d-flex justify-content-center comment-container">
         <div class="col-sm-8 col-md-6 col-lg-4 card border-0 mb-4 mt-3 ">
             <h3>Comments:</h3>

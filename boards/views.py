@@ -9,7 +9,8 @@ from .models import Category, Post
 from .forms import (
     UserRegistrationForm,
     UserUpdateForm,
-    ProfileUpdateForm
+    ProfileUpdateForm,
+    CommentForm
 )
 
 
@@ -100,7 +101,8 @@ class FullPost(View):
             {
                 "post": post,
                 "comments": comments,
-                "liked": liked
+                "liked": liked,
+                "comment_form": CommentForm() 
             },
         )
 
