@@ -37,10 +37,13 @@
                         Categories
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Community Alerts</a>
+                        {% for category in categories %}
+                            <a class="dropdown-item" href="#">{{ category }}</a>
+                        {% endfor %}
+                        <!-- <a class="dropdown-item" href="#">Community Alerts</a>
                         <a class="dropdown-item" href="#">Local News</a>
                         <a class="dropdown-item" href="#">Opinions</a>
-                        <a class="dropdown-item" href="#">Marketplace</a>
+                        <a class="dropdown-item" href="#">Marketplace</a> -->
                     </div>
                 </li>
                 {% if user.is_authenticated %}
