@@ -4,6 +4,17 @@ from cloudinary.models import CloudinaryField
 from django.urls import reverse
 
 
+class Category(models.Model):
+    """
+    Model for post categories
+    """
+
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     """
     Model for message posts
@@ -11,23 +22,12 @@ class Post(models.Model):
 
     STATUS = ((0, "Draft"), (1, "Published"))
 
-    ALERT = "ALRT"
-    NEWS = "NEWS"
-    OPINION = "OPIN"
-    MARKETPLACE = "MRKT"
-    CATEGORIES = [
-        (ALERT, "Alert"),
-        (NEWS, "News"),
-        (OPINION, "Opinion"),
-        (MARKETPLACE, "Marketplace"),
-    ]
-
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="board_posts"
     )
-    category = models.CharField(max_length=4, choices=CATEGORIES)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="", related_name="category_posts")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()

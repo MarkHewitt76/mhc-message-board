@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Post, Comment, UserProfile
+from .models import Category, Post, Comment, UserProfile
 
 
 @admin.register(Post)
@@ -30,15 +30,6 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ['name', 'email', 'body']
 
 
-# @admin.register(UserProfile())
-# class ProfileAdmin(admin.ModelAdmin):
-#     """
-#     Adds UserProfile model to admin page with search bar,
-#     customised fields and filter panel.
-#     """
-
-#     list_display = ('username', 'email', 'profile_image')
-#     list_filter = ('username',)
-#     search_fields = ['username', 'email']
+admin.site.register(Category)
 
 admin.site.register(UserProfile)

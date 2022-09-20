@@ -160,6 +160,7 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
             return True
         return False
 
+
 def register(request):
     """
     Function view for user registration form
