@@ -7,6 +7,7 @@ from django.shortcuts import (
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -166,7 +167,7 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('boards_post', args=[slug]))
 
 
-class CreatePost(LoginRequiredMixin, generic.CreateView):
+class CreatePost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """
     View for post creation form, using the Post model
     and inheriting from generic create view model.
@@ -174,6 +175,7 @@ class CreatePost(LoginRequiredMixin, generic.CreateView):
 
     model = Post
     fields = ['title', 'category', 'content', 'post_image']
+    success_message = "Message created successfully"
 
     def form_valid(self, form):
         """
@@ -187,7 +189,12 @@ class CreatePost(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+class UpdatePost(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    generic.UpdateView
+):
     """
     View for post update form, using the Post model and
     inheriting from generic update view model, as well as
@@ -197,6 +204,7 @@ class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
 
     model = Post
     fields = ['title', 'category', 'content', 'post_image']
+    success_message = "Message updated successfully"
 
     def form_valid(self, form):
         """
