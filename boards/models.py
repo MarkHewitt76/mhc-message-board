@@ -10,6 +10,7 @@ class Category(models.Model):
     """
 
     name = models.CharField(max_length=50)
+    category_image = CloudinaryField('image', default='cpic_placeholder')
 
     def __str__(self):
         return self.name
@@ -27,7 +28,12 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="board_posts"
     )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="", related_name="category_posts")
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        default="",
+        related_name="category_posts"
+    )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
