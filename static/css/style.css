@@ -14,6 +14,32 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     color: #444444;
 }
 
+/* Homepage hero banner */
+
+.hero-banner {
+    position: relative;
+    background-image: url("https://res.cloudinary.com/markhewitt76/image/upload/v1663787650/img_1271-9_n1rjaf.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    min-height: 50vh;
+    color: #fff;
+}
+
+.hero-banner-head h1 {
+    color: #fff;
+    font-size: 35px;
+}
+
+.overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
 /* Post lists and full view*/
 
 .msg-posts {
