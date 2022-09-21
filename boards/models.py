@@ -12,6 +12,9 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
     category_image = CloudinaryField('image', default='cpic_placeholder')
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 

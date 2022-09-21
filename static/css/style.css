@@ -35,6 +35,10 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
 .full-post-content {
     max-width: 600px;
 }
+
+.post-list-img {
+    max-height: 250px;
+}
   
 .article-title {
     color: #444444;
