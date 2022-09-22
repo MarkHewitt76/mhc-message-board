@@ -1,11 +1,11 @@
 /* Navbar  */
 
 .dropdown-item {
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .dropdown-item:hover {
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Generic styling */
@@ -31,9 +31,14 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     font-size: 35px;
 }
 
+.terms-p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
 .overlay {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.65);
     height: 100%;
     width: 100%;
     left: 0;

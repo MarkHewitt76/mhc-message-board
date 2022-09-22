@@ -5,7 +5,7 @@
 <div class="hero-banner">
     <div class="overlay">
         <div class="container">
-            <div class="row d-flex justify-content-end mb-5 hero-banner-head">
+            <div class="row d-flex justify-content-end mb-3 hero-banner-head">
                 <div class="col-sm-10 col-md-8 mt-3 text-center">
                     <h1>Malin Head Messages</h1>
                     <p><small>An online message board for the Community</small></p>
@@ -13,7 +13,14 @@
             </div>
             <div class="row d-flex justify-content-end">
                 <div class="col-md-10 col-lg-8 hero-banner-content">
-                    <p>Terms of use:</p>
+                    <p class="mb-0"><strong>Terms of use:</strong></p>
+                    {% if user.is_authenticated %}
+                    <p class="terms-p">- As you're logged in, you can <a href="{% url 'create_post' %}">post a message</a> or click on one to like it or leave a comment.</p>
+                    {% else %}
+                    <p class="terms-p">- You must <a href="{% url 'login' %}">log in</a> to post, comment, etc. If you don't have an account: <a href="{% url 'register' %}">Register Now!</a></p>
+                    {% endif %}
+                    <p class="terms-p"><strong>- Be respectful!</strong> Inappropriate messages/comments will be deleted.</p>
+                    <p class="terms-p">- For any issues, (forgotten account details, reporting posts/comments, etc.), <a href="#">Contact Admin</a>.</p>
                 </div>
             </div>
         </div>
