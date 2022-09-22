@@ -19,8 +19,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-dark navbar-expand-md bg-dark bg-gradient sticky-top">
         <a href="{% url 'boards_home' %}" class="navbar-brand">
-            <p class="h5 ml-2">Malin Head Community</p>
-            <p class="h5 ml-2">Message Board</p>
+            <p class="h6 ml-2">Malin Head Community</p>
+            <p class="h6 ml-2">Message Board</p>
         </a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,6 @@
                 <li class="nav-item mr-2">
                     <a class="nav-link" href="{% url 'boards_home' %}">Home</a>
                 </li>
-                <!-- <li class="nav-item mr-2"><a class="nav-link" href="">About</a></li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
@@ -40,10 +39,6 @@
                         {% for category in categories %}
                             <a class="dropdown-item" href="{% url 'category_posts' category.name %}">{{ category }}</a>
                         {% endfor %}
-                        <!-- <a class="dropdown-item" href="#">Community Alerts</a>
-                        <a class="dropdown-item" href="#">Local News</a>
-                        <a class="dropdown-item" href="#">Opinions</a>
-                        <a class="dropdown-item" href="#">Marketplace</a> -->
                     </div>
                 </li>
                 {% if user.is_authenticated %}
