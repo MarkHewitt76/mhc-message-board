@@ -31,7 +31,7 @@
                 <li class="nav-item mr-2">
                     <a class="nav-link" href="{% url 'boards_home' %}">Home</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown mr-4">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                     </a>
@@ -42,18 +42,19 @@
                     </div>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item ml-1">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_post' %}">New Message</a>
                 </li>
                 <div class="dropdown-divider"></div>
-                <li class="nav-item ml-1">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile' %}">Edit Profile</a>
                 </li>
                 <li class="nav-item mr-2">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% else %}
-                <li class="nav-item ml-5">
+                <div class="dropdown-divider"></div>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item mr-2">
