@@ -19,13 +19,11 @@
                     <p class="terms-p">- You must <a href="{% url 'login' %}">log in</a> to contribute. If you don't have an account: <a href="{% url 'register' %}">Register Now!</a></p>
                     {% endif %}
                     <p class="terms-p">- First, please read our 
-                        <a data-toggle="collapse" href="#termslist" role="button" aria-expanded="false" aria-controls="termslist">Terms of Use:</a>
+                        <a data-toggle="collapse" href="#termslist" role="button" aria-expanded="false" aria-controls="termslist">Terms of Use</a>. And above all, <strong>be respectful!</strong>
                     </p>
                     <div class="collapse" id="termslist">
                         {% include 'terms_conditions.html' %}
                     </div>
-                    <!-- <p class="terms-p"><strong>- Be respectful!</strong> Inappropriate messages/comments will be deleted.</p>
-                    <p class="terms-p">- For any issues, (forgotten account details, reporting posts/comments, etc.), <a href="#">Contact Admin</a>.</p> -->
                 </div>
             </div>
         </div>
