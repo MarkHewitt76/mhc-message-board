@@ -26,6 +26,15 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     color: #fff;
 }
 
+.overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.65);
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
 .hero-banner-head h1 {
     color: #fff;
     font-size: 35px;
@@ -36,13 +45,8 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     margin-bottom: 0;
 }
 
-.overlay {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.65);
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
+.termslist-card {
+    z-index: 1;
 }
 
 /* Post lists and full view*/
