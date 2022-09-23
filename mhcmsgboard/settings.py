@@ -153,3 +153,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'boards_home'
 LOGIN_URL = 'login'
+
+# Email settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# Custom setting:
+# 'To' email address for recipient_list value of send_mail() method.
+RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS')
