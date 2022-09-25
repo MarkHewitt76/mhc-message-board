@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container-fluid my5 col-sm-8 col-lg-6">
+    <div class="form-content">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-2">Contact Admin</legend>
+                <p class="contact-form-p mb-1">Submit this form to send an email to the site's Administrators.</p>
+                <p class="contact-form-p mb-1">Please provide a valid email address in case we need to respond.</p>
+                <p class="contact-form-p mb-0">Also, please make the subject line clear and concise, e.g:</p>
+                <p class="contact-form-p border-bottom pb-2 mb-4">'Report Post'; 'Report Comment'; 'Forgotten Email', etc.</p>
+                {{ form | crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-dark" type="submit">Send Email</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

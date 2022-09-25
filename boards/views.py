@@ -11,8 +11,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 from .models import Category, Post
 from .forms import (
     UserRegistrationForm,

@@ -132,6 +132,10 @@ a.article-title:hover {
     margin-bottom: 20px;
 }
 
+.contact-form-p {
+    font-size: 14px;
+}
+
 .profile-img-thumb {
     height: 50px;
     width: 50px;
