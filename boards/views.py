@@ -242,7 +242,16 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
 
     model = Post
-    success_url = '/'
+
+    def get_success_url(self):
+        """
+        Overrides get_sucess_url method to add a success message,
+        rather than SuccessMessage Mixin, which isn't supported by DeleteView.
+        Credit for the code goes to user13877195 on Stack Overflow, here:
+        https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown/42656041#42656041
+        """
+        messages.success(self.request, "Message deleted successfully")
+        return reverse("boards_home")
 
     def test_func(self):
         """

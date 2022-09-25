@@ -68,7 +68,7 @@
     {% if messages %}
         {% for message in messages %}
         <!-- Uses message tag to complete Bootstrap class name -->
-        <div id="alert-msg" class="alert alert-{{ message.tags }} fade show" role="alert">
+        <div id="alert-msg" class="alert alert-{{ message.tags }} fade show mb-0" role="alert">
             {{ message | safe }}
         </div>
         {% endfor %}
