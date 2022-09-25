@@ -80,8 +80,8 @@
     {% if messages %}
         {% for message in messages %}
         <!-- Uses message tag to complete Bootstrap class name -->
-        <div id="alert-msg" class="alert alert-{{ message.tags }} fade show mb-0" role="alert">
-            {{ message | safe }}
+        <div id="alert-msg" class="alert alert-{{ message.tags }} fade show mb-0 text-center role="alert">
+            <h5>{{ message | safe }}</h5>
         </div>
         {% endfor %}
     {% endif %}
@@ -114,7 +114,7 @@
             let messages = $('#alert-msg');
             let alert = new bootstrap.Alert(messages);
             alert.close();
-        }, 5000);
+        }, 3000);
     </script>
     
     <!-- Custom script to keep copyright year in footer up to date -->

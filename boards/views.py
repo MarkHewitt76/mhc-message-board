@@ -134,7 +134,9 @@ class FullPost(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            # comment_form = CommentForm()
+            messages.success(
+                request, "Your comment has been added successfully!"
+            )
         else:
             comment_form = CommentForm()
 
@@ -164,8 +166,14 @@ class PostLike(View):
 
         if post.likes.filter(id=self.request.user.id).exists():
             post.likes.remove(request.user)
+            messages.warning(
+                request, "You have Unliked this post!"
+            )
         else:
             post.likes.add(request.user)
+            messages.success(
+                request, "You have Liked this post!"
+            )
 
         return HttpResponseRedirect(reverse('boards_post', args=[slug]))
 
@@ -250,7 +258,7 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
         Credit for the code goes to user13877195 on Stack Overflow, here:
         https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown/42656041#42656041
         """
-        messages.success(self.request, "Message deleted successfully")
+        messages.warning(self.request, "Message deleted successfully")
         return reverse("boards_home")
 
     def test_func(self):
