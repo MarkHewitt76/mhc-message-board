@@ -3,8 +3,6 @@
 
 {% block content %}
 
-<!-- <input type="hidden" id="url" data-url="{% url 'post_like' post.slug %}" /> -->
-
 <div class="container-fluid">
 
     <div class="row d-flex justify-content-around">
@@ -42,20 +40,20 @@
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
                                 {% if liked %}
-                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}" onclick="like({{ post.id }})">
-                                    <i id="like-btn" class="fas fa-thumbs-up"></i>
+                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}">
+                                    <i class="fas fa-thumbs-up"></i>
                                 </button>
-                                <span id="likes-count">{{ post.number_of_likes }}</span>
+                                <span>{{ post.number_of_likes }}</span>
                                 {% else %}
-                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}" onclick="like({{ post.id }})">
-                                    <i id="like-btn" class="far fa-thumbs-up"></i>
+                                <button class="btn-like" type="submit" name="post_id" value="{{ post.slug }}">
+                                    <i class="far fa-thumbs-up"></i>
                                 </button>
-                                <span id="likes-count">{{ post.number_of_likes }}</span>
+                                <span>{{ post.number_of_likes }}</span>
                                 {% endif %}
                             </form>
                         </strong>
                         {% else %}
-                        <strong class="text-secondary"><i class="far fa-thumbs-up"></i> <span id="likes-count">{{ post.number_of_likes }}</span></strong>
+                        <strong class="text-secondary"><i class="far fa-thumbs-up"></i> <span>{{ post.number_of_likes }}</span></strong>
                         {% endif %}
                     </div>
                     <div class="col-1">
@@ -108,51 +106,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <script>
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     let button = document.getElementById(`like-btn-${{ post_slug }}`);
-        //     button.addEventListener("submit", function(e) {
-        //         e.preventDefault();
-        //         like();
-        //     });
-        // });
-        
-        // const url = document.getElementById("url").attr("data-url");
-        
-        function like(post_id) {
-            let likeButton = document.getElementById("like-btn");
-            let likeCount = document.getElementById("likes-count");
-            console.log(likeCount.innerText);
-            // e.preventDefault();
-            console.log(post_id);
-
-            // -------- I've no idea what works here! I've tried both of the below and several variations.
-            // -------- Obviously, none work.
-            // const url = `/like/${post.slug}`;
-            const url = "{{ request.scheme }}://{{ request.get_host }}{% url 'post_like' post.slug %}";
-
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    "X-CSRFToken": '{{ csrf_token }}',
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data[1]);
-                    likeCount.innerHTML = data["likes"];
-                    if (data["liked"] === true) {
-                        likeButton.className = "fas fa-thumbs-up";
-                    } else {
-                        likeButton.className = "far fa-thumbs-up";
-                    }
-                })
-                .catch((e) => alert(e));
-        }
-    </script> -->
 
 </div>
 
