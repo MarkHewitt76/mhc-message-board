@@ -5,7 +5,7 @@ from django.shortcuts import (
     reverse
 )
 from django.views import generic, View
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
@@ -159,12 +159,17 @@ class PostLike(View):
 
         post = get_object_or_404(Post, slug=slug)
 
+        # liked = True
         if post.likes.filter(id=self.request.user.id).exists():
             post.likes.remove(request.user)
+            # liked = False
         else:
             post.likes.add(request.user)
 
+        # likes = post.number_of_likes()
+
         return HttpResponseRedirect(reverse('boards_post', args=[slug]))
+        # return JsonResponse({"likes": likes, "liked": liked})
 
 
 class CreatePost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):

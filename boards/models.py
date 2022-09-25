@@ -64,7 +64,7 @@ class Post(models.Model):
         effectively acts as a redirect to the full_post.html template.
         """
 
-        return reverse('boards_post', kwargs={'slug': self.slug})     
+        return reverse('boards_post', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
