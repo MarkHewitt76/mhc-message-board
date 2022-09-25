@@ -43,4 +43,5 @@ urlpatterns = [
         ),
         name='delete_post'
     ),
+    path('contact/', views.ContactFormView.as_view(), name='contact_form'),
 ]

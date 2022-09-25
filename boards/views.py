@@ -5,19 +5,21 @@ from django.shortcuts import (
     reverse
 )
 from django.views import generic, View
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.conf import settings
 from .models import Category, Post
 from .forms import (
     UserRegistrationForm,
     UserUpdateForm,
     ProfileUpdateForm,
-    CommentForm
+    CommentForm,
+    ContactForm
 )
 
 
@@ -252,6 +254,33 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class ContactFormView(generic.FormView):
+    """
+    View for contact form, inheriting from generic form view
+    model. 
+    """
+
+    form_class = ContactForm
+    template_name = 'contact_form.html'
+    success_url = '/'
+    success_message = "Your email has been sent successfully."
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get('name')
+        email = form.cleaned_data.get('email')
+        subject = form.cleaned_data.get('subject')
+        message = f"Message from {name} ({email}):"
+        message += f"\nSubject: '{subject}'\n\n"
+        message += form.cleaned_data.get('message')
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[settings.RECIPIENT_ADDRESS]
+        )
+        return super().form_valid(form)
 
 
 def register(request):

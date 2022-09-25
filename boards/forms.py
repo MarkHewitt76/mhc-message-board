@@ -54,3 +54,14 @@ class CommentForm(forms.ModelForm):
         widgets = {
           'body': forms.Textarea(attrs={'rows': 3, 'cols': 150}),
         }
+
+
+class ContactForm(forms.Form):
+    """
+    Simple contact form to be displayed from 'Contact Admin' links.
+    """
+
+    name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea)
