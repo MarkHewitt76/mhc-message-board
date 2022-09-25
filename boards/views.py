@@ -266,7 +266,7 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
         return False
 
 
-class ContactFormView(generic.FormView):
+class ContactFormView(SuccessMessageMixin, generic.FormView):
     """
     View for contact form, inheriting from generic form view
     model. 
