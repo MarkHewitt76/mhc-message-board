@@ -15,7 +15,7 @@
             {% endif %}
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="post-username mr-2 lead font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
+                    <a class="post-username mr-2 font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
                     <p><small class="text-muted">{{ post.created_on }}</small></p>
                     <p class="text-muted">Category:
                         <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
@@ -117,7 +117,9 @@
                         {% endif %}
                     </span> 
                     <span class="post-username">
-                        <strong>{{ comment.name }}</strong>
+                        <strong>
+                            <a href="{% url 'user_posts' comment.name.username %}">{{ comment.name }}</a>
+                        </strong>
                     </span>
                     <p class=" text-muted font-weight-normal">{{ comment.created_on }}</p>
                     {{ comment.body | linebreaks }}
