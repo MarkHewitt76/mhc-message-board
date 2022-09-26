@@ -16,7 +16,12 @@
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="post-username mr-2 font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
-                    <p><small class="text-muted">{{ post.created_on }}</small></p>
+                    <p>
+                        <small class="text-muted">Posted: {{ post.created_on }}</small><br>
+                        {% if post.updated_on|timesince != post.created_on|timesince %}
+                        <small class="text-muted">Updated: {{ post.updated_on }}</small>
+                        {% endif %}
+                    </p>
                     <p class="text-muted">Category:
                         <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
                     </p>

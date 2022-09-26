@@ -32,7 +32,7 @@ class PostList(generic.ListView):
     """
 
     model = Post
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    queryset = Post.objects.filter(status=1).order_by('-updated_on')
     template_name = 'index.html'
     paginate_by = 6
 
@@ -58,7 +58,7 @@ class UserPostList(generic.ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(
             status=1, author=user
-            ).order_by('-created_on')
+            ).order_by('-updated_on')
 
 
 class CategoryList(generic.ListView):
@@ -82,7 +82,7 @@ class CategoryList(generic.ListView):
         category = get_object_or_404(Category, name=self.kwargs.get('category'))
         return Post.objects.filter(
             status=1, category=category
-            ).order_by('-created_on')
+            ).order_by('-updated_on')
 
 
 class FullPost(View):
