@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid my5 col-sm-8 col-md-6">
+    <div class="form-content">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Comment</legend>
+                <div class="text-center mb-5">
+                    <h3>Are you sure you want to delete the comment?</h3>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes DELETE</button>
+                                    <!-- Redirects back to full_post.html template view for current post -->
+                <a class="btn btn-outline-dark" href="{% url 'boards_post' object.post.slug %}">CANCEL</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

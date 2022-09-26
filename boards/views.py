@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from .models import Category, Post
+from .models import Category, Post, Comment
 from .forms import (
     UserRegistrationForm,
     UserUpdateForm,
@@ -264,12 +264,49 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     def test_func(self):
         """
         Inherited from UserPassesTestMixin. Will use get_object
-        method of UpdateView to test current user for
+        method of DeleteView to test current user for
         authorship of current post.
         """
 
         post = self.get_object()
         if self.request.user == post.author:
+            return True
+        return False
+
+
+class DeleteComment(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+):
+    """
+    View for comment deletion, using the Post model and
+    inheriting from generic delete view model, as well as
+    LogInRequiredMixin and UserPassesTestMixin for security
+    and validation.
+    """
+
+    model = Comment
+
+    def get_success_url(self):
+        """
+        Overrides get_sucess_url method to add a success message,
+        rather than SuccessMessage Mixin, which isn't supported by DeleteView.
+        Credit for the code goes to user13877195 on Stack Overflow, here:
+        https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown/42656041#42656041
+        """
+        messages.warning(self.request, "Comment deleted successfully")
+        return reverse("boards_post", kwargs={'slug': self.object.post.slug})
+
+    def test_func(self):
+        """
+        Inherited from UserPassesTestMixin. Will use get_object
+        method of DeleteView to test current user for
+        authorship of current comment.
+        """
+
+        comment = self.get_object()
+        if self.request.user == comment.name:
             return True
         return False
 
