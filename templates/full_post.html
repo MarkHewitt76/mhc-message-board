@@ -101,7 +101,7 @@
                     {{ comment_form | crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-dark" type="submit">Submit</button>
+                    <button class="btn btn-outline-dark" type="submit">Post Comment</button>
                 </div>
             </form>
         </div>
@@ -126,7 +126,12 @@
                             <a href="{% url 'user_posts' comment.name.username %}">{{ comment.name }}</a>
                         </strong>
                     </span>
-                    <p class=" text-muted font-weight-normal">{{ comment.created_on }}</p>
+                    <p>
+                        <small class="text-muted">Posted: {{ comment.created_on }}</small><br>
+                        {% if comment.updated_on|timesince != comment.created_on|timesince %}
+                        <small class="text-muted">Edited: {{ comment.updated_on }}</small>
+                        {% endif %}
+                    </p>
                     {{ comment.body | linebreaks }}
                 </div>
                 {% if comment.name == user %}
