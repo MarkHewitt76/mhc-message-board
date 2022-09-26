@@ -167,3 +167,24 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # Custom setting:
 # 'To' email address for recipient_list value of send_mail() method.
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS')
+
+# Summernote settings
+
+SUMMERNOTE_THEME = 'bs4'
+
+SUMMERNOTE_CONFIG = {
+    'iframe': True,
+    'summernote': {
+        'width': '100%',
+    },
+    'toolbar': [
+        ['style', ['bold', 'italic', 'underline']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontname', ['fontname']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['link', 'picture']]
+    ],
+}

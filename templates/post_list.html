@@ -16,7 +16,7 @@
                         <p>
                             <small class="text-muted">Posted: {{ post.created_on|date:'M d, Y' }}</small><br>
                             {% if post.updated_on|timesince != post.created_on|timesince %}
-                            <small class="text-muted">Updated: {{ post.updated_on|date:'M d, Y' }}</small>
+                            <small class="text-muted">Updated: {{ post.updated_on | date:'M d, Y' }}</small>
                             {% endif %}
                         </p>
                         <p class="text-muted">Category:

@@ -19,6 +19,7 @@ from .forms import (
     UserRegistrationForm,
     UserUpdateForm,
     ProfileUpdateForm,
+    PostForm,
     CommentForm,
     ContactForm
 )
@@ -185,7 +186,7 @@ class CreatePost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """
 
     model = Post
-    fields = ['title', 'category', 'content', 'post_image']
+    form_class = PostForm
     success_message = "Message created successfully"
 
     def form_valid(self, form):
@@ -214,7 +215,7 @@ class UpdatePost(
     """
 
     model = Post
-    fields = ['title', 'category', 'content', 'post_image']
+    form_class = PostForm
     success_message = "Message updated successfully"
 
     def form_valid(self, form):
