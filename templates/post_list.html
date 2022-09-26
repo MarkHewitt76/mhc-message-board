@@ -23,18 +23,22 @@
                             <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
                         </p>
                     </div>
-                    {% if "placeholder" in post.post_image.url and "cpic_placeholder" in post.category.category_image.url %}
-                    <img class="post-list-img img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663776231/Ireland_Malin_Head_Andrea_Ricordi_GettyImages-526688086_RFC_crop_i5l1ls.jpg" alt="Placeholder image">
-                    {% elif "placeholder" in post.post_image.url %}
-                    <img class="post-list-img img-fluid" src=" {{ post.category.category_image.url }}" alt="Category image">
-                    {% else %}
-                    <img class="post-list-img img-fluid" src=" {{ post.post_image.url }}" alt="Article image">
-                    {% endif %}
-                    <h2><a class="article-title" href="{% url 'boards_post' post.slug %}">{{ post.title }}</a></h2>
-                    <div class="preview-content overflow-hidden">
-                        {{ post.content | safe }}
-                    </div>
-                    <hr />
+
+                    <a class="article-title" href="{% url 'boards_post' post.slug %}">
+                        {% if "placeholder" in post.post_image.url and "cpic_placeholder" in post.category.category_image.url %}
+                        <img class="post-list-img img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663776231/Ireland_Malin_Head_Andrea_Ricordi_GettyImages-526688086_RFC_crop_i5l1ls.jpg" alt="Placeholder image">
+                        {% elif "placeholder" in post.post_image.url %}
+                        <img class="post-list-img img-fluid" src=" {{ post.category.category_image.url }}" alt="Category image">
+                        {% else %}
+                        <img class="post-list-img img-fluid" src=" {{ post.post_image.url }}" alt="Article image">
+                        {% endif %}
+                        <p class="h2">{{ post.title }}</p>
+                        <div class="preview-content overflow-hidden">
+                            {{ post.content | safe }}
+                        </div>
+                    </a>
+
+                    <hr>
                     <p class="text-muted h6"><i class="far fa-thumbs-up"></i> 
                         {{ post.number_of_likes }}</p>
                 </div>
