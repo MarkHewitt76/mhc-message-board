@@ -9,6 +9,9 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Register Today!</legend>
+                <p class="contact-form-p border-bottom pb-2 mb-4">
+                    You <strong>MUST</strong> provide a valid email address. Failure to do so will result in an inability to reset your password, should you need to and may result in your account being suspended or removed, as per our Terms of Use, listed on the <a href="{% url 'boards_home' %}">Homepage</a>.
+                </p>
                 {{ form | crispy }}
             </fieldset>
             <div class="form-group">
