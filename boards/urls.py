@@ -56,6 +56,10 @@ urlpatterns = [
         template_name='post_confirm_delete.html'
         ),
         name='delete_post'),
+    path('update-comment/<int:pk>/', views.UpdateComment.as_view(
+        template_name='update_comment_form.html'
+        ),
+        name='update_comment'),
     path('delete-comment/<int:pk>/', views.DeleteComment.as_view(
         template_name='comment_confirm_delete.html'
         ),

@@ -274,6 +274,43 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
         return False
 
 
+class UpdateComment(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    generic.UpdateView
+):
+    """
+    View for comment update form, using the Post model and
+    inheriting from generic update view model, as well as
+    LogInRequiredMixin and UserPassesTestMixin for security
+    and validation.
+    """
+
+    model = Comment
+    form_class = CommentForm
+    success_message = "Comment edited successfully"
+
+    def get_success_url(self):
+        """
+        Overrides get_sucess_url method to add a return url.
+        """
+
+        return reverse("boards_post", kwargs={'slug': self.object.post.slug})
+
+    def test_func(self):
+        """
+        Inherited from UserPassesTestMixin. Will use get_object
+        method of UpdateView to test current user for
+        authorship of current post.
+        """
+
+        comment = self.get_object()
+        if self.request.user == comment.name:
+            return True
+        return False
+
+
 class DeleteComment(
     LoginRequiredMixin,
     UserPassesTestMixin,

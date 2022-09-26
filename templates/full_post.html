@@ -126,7 +126,7 @@
                 </div>
                 {% if comment.name == user %}
                 <div>
-                    <!-- <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'update_post' post.slug %}">Update</a> -->
+                    <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'update_comment' comment.id %}">Edit</a>
                     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_comment' comment.id %}">Delete</a>
                 </div>
                 {% endif %}
