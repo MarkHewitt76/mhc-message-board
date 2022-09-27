@@ -1,12 +1,18 @@
+"""
+Standard Django database models
+Standard Django user model
+Standard Django reverse url model
+Cloudinary model to support image repository
+"""
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
     """
-    Model for post categories
+    Model for message post categories
     """
 
     name = models.CharField(max_length=50)
@@ -45,13 +51,20 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name="post_likes")
 
     class Meta:
-        # Orders posts in descending order
+        """
+        Orders message post instances in the database by
+        date created in descending order.
+        """
         ordering = ['-created_on']
 
     def __str__(self):
         return self.title
 
     def number_of_likes(self):
+        """
+        Uses the count method to return the number of likes
+        in a message post instance.
+        """
         return self.likes.count()
 
     def get_absolute_url(self):
@@ -83,7 +96,10 @@ class Comment(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        # Orders comments in ascending order
+        """
+        Orders comment instances in the database by
+        date created in ascending order.
+        """
         ordering = ['created_on']
 
     def __str__(self):

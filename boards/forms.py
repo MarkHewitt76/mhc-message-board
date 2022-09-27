@@ -1,3 +1,6 @@
+"""
+Form configuration for boards app
+"""
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -7,7 +10,8 @@ from .models import UserProfile, Post, Comment
 
 class UserRegistrationForm(UserCreationForm):
     """
-    Registration form class. For inheritance by form views.
+    Registration form class which inherits django UserCreationForm.
+    For inheritance by form views.
     Inherits UserCreationForm and email field from django
     forms library and operates on User model.
     """
@@ -45,6 +49,12 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
+    """
+    Model form class which inherits the ModelForm object from forms.
+    Will add the Summernote WYSIWYG editor to the CreatePost and UpdatePost
+    views so that the user can avail of rich text formatting when
+    posting/updating messages.
+    """
 
     class Meta:
         model = Post

@@ -1,3 +1,4 @@
+"""Import model to be used across project."""
 from .models import Category
 
 
