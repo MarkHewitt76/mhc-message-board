@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container-fluid my5 col-sm-8 col-md-6 col-xl-4">
+<div class="container-fluid col-sm-8 col-md-6 col-xl-4 my-5 pr-0">
     <div class="profile-content">
         <div class="media">
             {% if 'pic_placeholder' in user.user_profile.profile_image.url %}
@@ -12,9 +12,9 @@
             <img class="rounded-circle profile-img" src="{{ user.user_profile.profile_image.url }}" alt="Profile picture">
             {% endif %}
             <div class="media-body">
-            <h2 class="profile-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-          </div>
+                <h2 class="profile-name">{{ user.username }}</h2>
+                <span class="profile-email text-secondary">{{ user.email }}</span>
+            </div>
         </div>
                         <!-- Encoding type for processing profile image -->
         <form method="POST" enctype="multipart/form-data">

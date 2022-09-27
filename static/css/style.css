@@ -1,3 +1,9 @@
+/* Generic styling */
+
+main h1, main h2, main h3, main h4, main h5, main h6 {
+    color: #444444;
+}
+
 /* Navbar  */
 
 .dropdown-item {
@@ -6,12 +12,6 @@
 
 .dropdown-item:hover {
     background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Generic styling */
-
-main h1, main h2, main h3, main h4, main h5, main h6 {
-    color: #444444;
 }
 
 /* Homepage hero banner */
@@ -58,7 +58,6 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
 .post-content, .full-post-content {
     background: #ffffff;
     padding: 10px;
-    /* border: 1px solid #dddddd; */
     border-radius: 3px;
     margin-bottom: 20px;
 }
@@ -86,11 +85,14 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
   
 .preview-content {
     white-space: pre-line;
+    overflow-wrap: break-word;
+    max-width: 260px;
     max-height: 200px;
 }
 
 .article-content {
     white-space: pre-line;
+    overflow-wrap: break-word;
 }
 
 .article-metadata {
@@ -126,9 +128,9 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     font-size: 14px;
 }
 
-/* Forms & profiles */
+/* Forms */
 
-.form-content, .profile-content {
+.form-content {
     background: #ffffff;
     padding: 10px 20px;
     border: 1px solid #dddddd;
@@ -138,6 +140,15 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
 
 .contact-form-p {
     font-size: 14px;
+}
+
+/* Profiles */
+
+.profile-content {
+    background: #ffffff;
+    padding: 10px 5px;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
 .profile-img-thumb-sm {
@@ -165,8 +176,12 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     width: 125px;
     margin-right: 20px;
     margin-bottom: 16px;
-  }
+}
   
-.profile-heading {
+.profile-name {
     font-size: 2.5rem;
+}
+
+.profile-email {
+    word-break: break-all;
 }
