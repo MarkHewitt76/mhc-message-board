@@ -1,7 +1,7 @@
 """
 Standard Django database models
 Standard Django user model
-Standard Django reverse url model
+Standard Django reverse url module
 Cloudinary model to support image repository
 """
 from django.db import models

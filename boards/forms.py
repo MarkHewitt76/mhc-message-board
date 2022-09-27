@@ -1,5 +1,10 @@
-"""
-Form configuration for boards app
+"""Form configuration for boards app
+----------------
+Standard Django forms module
+Standard Django User model
+Django UserCreationForm module
+Summernote WYSYWIG editor widget
+boards models
 """
 from django import forms
 from django.contrib.auth.models import User
