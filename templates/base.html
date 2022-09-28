@@ -43,6 +43,7 @@
                 <li class="nav-item mr-2">
                     <a class="nav-link" href="{% url 'boards_home' %}">Home</a>
                 </li>
+                <!-- Categories dropdown list -->
                 <li class="nav-item dropdown mr-4">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
@@ -53,6 +54,7 @@
                         {% endfor %}
                     </div>
                 </li>
+                <!-- Menu options for logged in user only -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_post' %}">New Message</a>
@@ -65,6 +67,7 @@
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% else %}
+                <!-- Login and Register menu options -->
                 <div class="dropdown-divider"></div>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -77,6 +80,7 @@
         </div>
     </nav>
 
+    <!-- Messages -->
     {% if messages %}
         {% for message in messages %}
         <!-- Uses message tag to complete Bootstrap class name -->
@@ -95,6 +99,7 @@
      <!-- Footer -->
      <footer class="footer mt-auto py-3 bg-dark">
         <p class="copyright m-0 pb-1 text-center text-light">Copyright &copy; Malin Head Community Association <span id="copyright"></span></p>
+        <!-- Community association social media links -->
         <p class="m-0 text-center text-light">Follow us on Social Media:</p>
         <div class="d-flex justify-content-center">
             <span class="mx-3">
@@ -107,7 +112,9 @@
                 <a class="text-light" href="https://www.instagram.com/malinheadcommunity/?hl=en" target="_blank" rel="noopener" aria-label="Visit our instagram page (opens in a new tab)"><i class="fab fa-instagram"></i></a>
             </span>
         </div>
+        <!-- Community Association website -->
         <p class="m-0 text-center text-light">Or visit our website at <a href="https://www.malinheadcommunity.ie/" target="_blank" rel="noopener" aria-label="Page opens in a new tab">www.malinheadcommunity.ie</a></p>
+        <!-- Contact Admin email form link -->
         <p class="m-0 pt-1 text-center text-light">For any questions or concerns, <a href="{% url 'contact_form' %}">Contact the site Admin</a></p>
     </footer>
 

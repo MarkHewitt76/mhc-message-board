@@ -2,10 +2,14 @@
 
 {% block content %}
 
+<!-- Message posts by user -->
+
 <div class="container-fluid msg-posts">
 
     <div class="row">
         <div class="col mt-5 text-center">
+            <!-- Get username from keyword argument passed by UserPostList view -->
+            <!-- Use paginator method count to show total number of posts in category -->
             {% with page_obj.paginator.count as total_posts %}
             <h2>Posts by {{ view.kwargs.username }} ({{ total_posts }})</h2>
             {% endwith %}

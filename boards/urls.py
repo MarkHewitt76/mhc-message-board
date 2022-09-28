@@ -17,6 +17,27 @@ urlpatterns = [
         name='category_posts'),
     path('post/<slug:slug>/', views.FullPost.as_view(), name='boards_post'),
     path('like/<slug:slug>/', views.PostLike.as_view(), name='post_like'),
+    path('new/', views.CreatePost.as_view(
+        template_name='post_form.html'
+        ),
+        name='create_post'),
+    path('post/<slug:slug>/update/', views.UpdatePost.as_view(
+        template_name='post_form.html'
+        ),
+        name='update_post'),
+    path('post/<slug:slug>/delete/', views.DeletePost.as_view(
+        template_name='post_confirm_delete.html'
+        ),
+        name='delete_post'),
+    path('update-comment/<int:pk>/', views.UpdateComment.as_view(
+        template_name='update_comment_form.html'
+        ),
+        name='update_comment'),
+    path('delete-comment/<int:pk>/', views.DeleteComment.as_view(
+        template_name='comment_confirm_delete.html'
+        ),
+        name='delete_comment'),
+    path('contact/', views.ContactFormView.as_view(), name='contact_form'),
     path('register/', views.register, name='register'),
     path('user/profile/', views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(
@@ -47,25 +68,4 @@ urlpatterns = [
              template_name='password_reset_complete.html'
          ),
          name='password_reset_complete'),
-    path('new/', views.CreatePost.as_view(
-        template_name='post_form.html'
-        ),
-        name='create_post'),
-    path('post/<slug:slug>/update/', views.UpdatePost.as_view(
-        template_name='post_form.html'
-        ),
-        name='update_post'),
-    path('post/<slug:slug>/delete/', views.DeletePost.as_view(
-        template_name='post_confirm_delete.html'
-        ),
-        name='delete_post'),
-    path('update-comment/<int:pk>/', views.UpdateComment.as_view(
-        template_name='update_comment_form.html'
-        ),
-        name='update_comment'),
-    path('delete-comment/<int:pk>/', views.DeleteComment.as_view(
-        template_name='comment_confirm_delete.html'
-        ),
-        name='delete_comment'),
-    path('contact/', views.ContactFormView.as_view(), name='contact_form'),
 ]
