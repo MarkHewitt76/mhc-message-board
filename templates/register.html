@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+<!-- User registration form template -->
+
 {% block content %}
 
 <div class="container-fluid my-5 col-sm-8 col-md-6 col-xl-4">
@@ -18,6 +20,7 @@
                 <button class="btn btn-outline-dark" type="submit">Sign Up</button>
             </div>
         </form>
+        <!-- Login page link -->
         <div class="border-top pt-3">
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
