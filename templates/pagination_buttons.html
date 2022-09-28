@@ -1,21 +1,21 @@
-<!-- Pagination buttons -->
+<!-- Pagination buttons template -->
 <div class="text-center">
     {% if is_paginated %}
     <p class="mb-1"><small>Pages</small></p>
-
+        <!-- 'First' and 'Prev' buttons -->
         {% if page_obj.has_previous %}
         <a class="btn btn-outline-dark pag-btn mb-4" href="?page=1">First</a>
         <a class="btn btn-outline-dark pag-btn mb-4" href="?page={{ page_obj.previous_page_number }}">Prev</a>
         {% endif %}
-
+        <!-- Clickable page numbers: range 1 to 5 max -->
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
             <a class="btn btn-dark pag-btn mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-4' and num < page_obj.number|add:'4' %}
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
             <a class="btn btn-outline-dark pag-btn mb-4" href="?page={{ num }}">{{ num }}</a>
             {% endif %}
         {% endfor %}
-
+        <!-- 'Next' and 'Last' buttons -->
         {% if page_obj.has_next %}
         <a class="btn btn-outline-dark pag-btn mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
         <a class="btn btn-outline-dark pag-btn mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
