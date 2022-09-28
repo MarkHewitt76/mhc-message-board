@@ -3,29 +3,38 @@
 
 {% block content %}
 
+<!-- Detailed Message view template -->
+
 <div class="container-fluid">
 
+    <!-- Message post -->
     <div class="row d-flex justify-content-around">
 
         <article class="col mt-3 mb-0 mx-2 p-0 media full-post-content">
+            <!-- Profile image -->
             {% if 'pic_placeholder' in post.author.user_profile.profile_image.url %}
             <img class="rounded-circle profile-img-thumb" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Profile picture">
             {% else %}
             <img class="rounded-circle profile-img-thumb" src="{{ post.author.user_profile.profile_image.url }}" alt="Profile picture">
             {% endif %}
             <div class="media-body">
+                <!-- Metadata -->
                 <div class="article-metadata">
+                    <!-- Username -->
                     <a class="post-username mr-2 font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
+                    <!-- Created on and Updated on info -->
                     <p>
                         <small class="text-muted">Posted: {{ post.created_on }}</small><br>
                         {% if post.updated_on|timesince != post.created_on|timesince %}
                         <small class="text-muted">Updated: {{ post.updated_on }}</small>
                         {% endif %}
                     </p>
+                    <!-- Category info -->
                     <p class="text-muted">Category:
                         <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
                     </p>
                 </div>
+                <!-- Main post image -->
                 {% if "placeholder" in post.post_image.url and "cpic_placeholder" in post.category.category_image.url %}
                 <img class="img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663776231/Ireland_Malin_Head_Andrea_Ricordi_GettyImages-526688086_RFC_crop_i5l1ls.jpg" alt="Placeholder image">
                 {% elif "placeholder" in post.post_image.url %}
@@ -33,13 +42,17 @@
                 {% else %}
                 <img class="img-fluid" src=" {{ post.post_image.url }}" alt="Article image">
                 {% endif %}
+                <!-- Message title -->
                 <h2 class="article-title">{{ post.title }}</h2>
+                <!-- Message body -->
                 <div class="article-content">
                     {{ post.content | safe }}
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-1">
+                        <!-- Like/Unlike button and number of likes if user is logged in -->
+                        <!-- Just number of likes if not -->
                         {% if user.is_authenticated %}
                         <strong>
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
@@ -61,12 +74,14 @@
                         <strong class="text-secondary"><i class="far fa-thumbs-up"></i> <span>{{ post.number_of_likes }}</span></strong>
                         {% endif %}
                     </div>
+                    <!-- Number of comments -->
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comment"></i> {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
                 </div>
+                <!-- Update and delete buttons for post's author only -->
                 {% if post.author == user %}
                 <div>
                     <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'update_post' post.slug %}">Update</a>
@@ -78,6 +93,7 @@
         
     </div>
 
+    <!-- Comment form if user logged in -->
     {% if user.is_authenticated %}
     <div class="row d-flex justify-content-center comment-form">
         <div class="col-sm-8 col-md-6 card border-0 mb-0 mt-0">
@@ -85,6 +101,7 @@
             <form method="POST" class="mt1">
                 {% csrf_token %}
                 <fieldset class="form-group">
+                    <!-- Logged in user's name and profile image -->
                     <legend class="border-bottom mb-1">
                         As:
                         <span>
@@ -108,32 +125,38 @@
     </div>
     {% endif %}
 
+    <!-- Comments section -->
     <div class="row d-flex justify-content-center comment-container">
         <div class="col-sm-8 col-md-6 card border-0 mb-4 mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
                 {% for comment in comments %}
                 <div class="comments p-1";>
+                    <!-- Comment author's profile image -->
                     <span>
                         {% if 'pic_placeholder' in comment.name.user_profile.profile_image.url %}
                         <img class="rounded-circle profile-img-thumb-sm" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Profile picture">
                         {% else %}
                         <img class="rounded-circle profile-img-thumb-sm" src="{{ comment.name.user_profile.profile_image.url }}" alt="Profile picture">
                         {% endif %}
-                    </span> 
+                    </span>
+                    <!-- Comment author's username -->
                     <span class="post-username">
                         <strong>
                             <a href="{% url 'user_posts' comment.name.username %}">{{ comment.name }}</a>
                         </strong>
                     </span>
+                    <!-- Comment created on / updated on info -->
                     <p>
                         <small class="text-muted">Posted: {{ comment.created_on }}</small><br>
                         {% if comment.updated_on|timesince != comment.created_on|timesince %}
                         <small class="text-muted">Edited: {{ comment.updated_on }}</small>
                         {% endif %}
                     </p>
+                    <!-- Comment body -->
                     {{ comment.body | linebreaks }}
                 </div>
+                <!-- Update and delete buttons for comment's author only -->
                 {% if comment.name == user %}
                 <div>
                     <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'update_comment' comment.id %}">Edit</a>

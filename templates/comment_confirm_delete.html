@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- Confirm comment deletion template -->
+
 <div class="container-fluid my-5 col-sm-8 col-md-6">
     <div class="form-content">
         <form method="POST">
@@ -14,7 +16,7 @@
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-danger" type="submit">Yes DELETE</button>
-                                    <!-- Redirects back to full_post.html template view for current post -->
+                <!-- Redirects back to full_post.html template view for current post -->
                 <a class="btn btn-outline-dark" href="{% url 'boards_post' object.post.slug %}">CANCEL</a>
             </div>
         </form>

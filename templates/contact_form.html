@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<!-- Contact Admin form template -->
+
 <div class="container-fluid my-5 col-sm-8 col-lg-6">
     <div class="form-content">
         <form method="POST" enctype="multipart/form-data">
@@ -17,6 +19,7 @@
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-dark" type="submit">Send Email</button>
+                <!-- Redirects back to previous page -->
                 <a class="btn btn-outline-dark" href="javascript:window.history.back()">CANCEL</a>
             </div>
         </form>
