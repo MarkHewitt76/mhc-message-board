@@ -1,3 +1,5 @@
+<!-- Generic message list template  -->
+
 <div class="row">
     <!-- Post List Column -->
     <div class="col-12 mt-3">
@@ -5,26 +7,32 @@
             {% for post in post_list %}
 
             <article class="col-md-4 media post-content">
+                <!-- Profile image -->
                 {% if 'pic_placeholder' in post.author.user_profile.profile_image.url %}
                 <img class="rounded-circle profile-img-thumb" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663374285/post-it-1238872_klgz4t.jpg" alt="Profile picture">
                 {% else %}
                 <img class="rounded-circle profile-img-thumb" src="{{ post.author.user_profile.profile_image.url }}" alt="Profile picture">
                 {% endif %}
                 <div class="media-body">
+                    <!-- Metadata -->
                     <div class="article-metadata">
+                        <!-- Username -->
                         <a class="post-username mr-2 font-weight-bolder" href="{% url 'user_posts' post.author.username %}">{{ post.author }}</a>
+                        <!-- Created on and Updated on info -->
                         <p>
                             <small class="text-muted">Posted: {{ post.created_on|date:'M d, Y' }}</small><br>
                             {% if post.updated_on|timesince != post.created_on|timesince %}
                             <small class="text-muted">Updated: {{ post.updated_on | date:'M d, Y' }}</small>
                             {% endif %}
                         </p>
+                        <!-- Category info -->
                         <p class="text-muted">Category:
                             <a href="{% url 'category_posts' post.category %}">{{ post.category }}</a>
                         </p>
                     </div>
-
+                    <!-- Message preview -->
                     <a class="article-title" href="{% url 'boards_post' post.slug %}">
+                        <!-- Main post image -->
                         {% if "placeholder" in post.post_image.url and "cpic_placeholder" in post.category.category_image.url %}
                         <img class="post-list-img img-fluid" src="https://res.cloudinary.com/markhewitt76/image/upload/v1663776231/Ireland_Malin_Head_Andrea_Ricordi_GettyImages-526688086_RFC_crop_i5l1ls.jpg" alt="Placeholder image">
                         {% elif "placeholder" in post.post_image.url %}
@@ -32,19 +40,23 @@
                         {% else %}
                         <img class="post-list-img img-fluid" src=" {{ post.post_image.url }}" alt="Article image">
                         {% endif %}
+                        <!-- Message title -->
                         <p class="h2">{{ post.title }}</p>
+                        <!-- Message body preview -->
                         <div class="preview-content overflow-hidden">
                             {{ post.content | safe }}
                         </div>
                     </a>
 
                     <hr>
+                    <!-- Number of likes -->
                     <p class="text-muted h6"><i class="far fa-thumbs-up"></i> 
                         {{ post.number_of_likes }}</p>
                 </div>
             </article>
                 
-                                
+            <!-- Loop counter to show message previews in rows of 3 -->
+            <!-- (Closes last row's div and starts a new one) -->
             {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="row d-flex justify-content-around">
