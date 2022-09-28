@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+<!-- Landing page content -->
+
 {% block content %}
 
+<!-- Hero banner -->
 <div class="hero-banner">
     <div class="overlay">
         <div class="container">
@@ -13,6 +16,7 @@
             </div>
             <div class="row d-flex justify-content-end">
                 <div class="col-md-10 col-lg-8 hero-banner-content">
+                    <!-- Banner info: displays different first line depending whether user logged in or not -->
                     {% if user.is_authenticated %}
                     <p class="terms-p">- As you're logged in, you can <a href="{% url 'create_post' %}">post a message</a>, like a post or leave a comment.</p>
                     {% else %}
@@ -30,6 +34,7 @@
     </div>
   </div>
 
+<!-- All message posts, listed by date updated, in descending order -->
 <div class="container-fluid msg-posts">
 
     <div class="row">
