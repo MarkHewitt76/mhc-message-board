@@ -801,9 +801,9 @@ This project was deployed using the steps below with version releasing active. P
 
 To fork this website to either propose changes or to use as an idea for another website, follow these steps:
 1. If you haven't yet, you should first set up Git. Don't forget to set up authentication to GitHub.com from Git as well.
-1. Navigate to the [Fresh Casts](https://github.com/RickofManc/fresh-casts).
+1. Navigate to the [Malin Head Messages](https://github.com/MarkHewitt76/mhc-message-board) GitHub repository.
 1. Click the 'Fork' button on the upper right part of the page. It's in between 'Watch' and 'Star'.
-1. You will now have a fork of the Fresh Casts repository added to your GitHub profile. Navigate to your own profile and find the forked repository to add the required files.
+1. You will now have a fork of the Malin Head Messages repository added to your GitHub profile. Navigate to your own profile and find the forked repository to add the required files.
 1. Above the list of forked files click the 'Code' button.
 1. A drop-down menu will appear providing a choice of cloning options. Select the one which is applicable to your setup.
 </br>
